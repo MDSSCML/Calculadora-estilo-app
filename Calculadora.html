@@ -1,0 +1,489 @@
+
+<head>
+    <style>
+        table,
+        tr,
+        td{
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-content: center;
+            align-items: stretch;
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: auto;
+            align-self: auto;
+            font-size: 15px;
+            padding: 4px;
+            background-color:  rgb(27, 26, 26) ;
+            border-radius: 10px;
+            
+        }
+        
+        button {
+           
+            margin: 10px 0px 0px 10px;
+            background-color: black;
+            color: white;
+        }
+
+        .mrc,
+        .m,
+        .mM {
+           
+            border-radius: 100%;
+        }
+
+        #igual {
+            
+            margin-right: 7px;
+        }
+
+        table,
+        td {
+            
+            /* border-radius: 30px 30px 10px 10px; */
+            border: 1px ridge;
+            /* box-shadow: 20px 20px 10px 0px; */
+
+        }
+
+        h2 {
+           margin-top: -5px;
+           margin-bottom: -5px;
+            /* margin-right: 5px;
+            margin-left:10px; */
+
+
+        }
+
+        #ler2 {
+            color: black;
+
+        }
+        .text-white{
+            margin-bottom: -10%;
+        
+        }
+       @media  screen and (max-width: 800px) {
+           
+           table,tr,td{
+               border-radius: 2px;
+             border-top-left-radius: 4px;
+             border-top-right-radius: 4px;
+
+           }
+       }
+     
+    </style>
+</head>
+
+<body>
+
+
+    <center>
+        <div class="table-responsive">
+        <table class="table table-sm" style="width: 23%;" >
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center mb-4">
+                        <p class="text-white">Calculadora</p>
+                        
+                    </th>
+                    
+                </tr>
+                <br>
+                <tr>
+                    <td>
+
+                        <h2 style="background-color: white;" id="ler2"> </h2>
+                        
+                        <!-- <input type="text" class="text-center" placeholder="Visor" size="25" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2 id="ler" style="background-color: white;"></h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" style="background-color: green;" id="ligar" value="1">ON</button>
+                        <button type="button" class="mrc" style="background-color: yellow;">MRC</button>
+                        <button type="button" class="m" style="background-color: yellow;">M-</button>
+                        <button type="button" class="mM" style="background-color: yellow;">M+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="px-1" id="desligar">OFF</button>
+                        <button type="button" class="px-3" disabled>???</button>
+                        <button type="button" class="offset-0 px-3" id="resto">%</button>
+                        <button type="button" class="offset-0 px-4" id="dividir">/</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="px-3" id="n7" value="7">7</button>
+                        <button type="button" class="px-4 offset-0" id="n8" value="8">8</button>
+                        <button type="button" class="offset-1 px-3" id="n9" value="9">9</button>
+                        <button type="button" class="offset-0 px-4" id="times">X</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="px-3" id="n4" value="4">4</button>
+                        <button type="button" class="px-4" id="n5" value="5">5</button>
+                        <button type="button" class="px-3 offset-1" id="n6" value="6">6</button>
+                        <button type="button" class="px-4" id="diminui">-</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="px-3" id="n1" value="1">1</button>
+                        <button type="button" class="px-4" id="n2" value="2">2</button>
+                        <button type="button" class="offset-1 px-3" id="n3" value="3">3</button>
+                        <button type="button" class="px-3 pr-4" style="background-color: green;" id="plus"
+                            value="+">+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="px-3" id="n0" value="0">0</button>
+                        <button type="button" class="px-4" id="ponto" value="." disabled>.</button>
+                        <button type="button" class="px-3 offset-1 pr-4" disabled>=</button>
+                        <button type="button" class="px-3 offset-0 pr-2" id="limpar">CE</button>
+                    </td>
+                </tr>
+
+            </thead>
+        </table>
+        </div>
+    </center>
+
+    <script>
+
+        $(function () {
+            lista = [];
+            ligada = []
+
+            $('#n1').click(function () {
+
+                n1 = document.getElementById('n1').value;
+                n1 = +(n1);
+                document.getElementById('ler').innerHTML += n1;
+                lista.push(n1);
+
+                //quando chamar o número vai eliminar o zero
+                if (lista != "") {
+                    document.getElementById('ler').innerHTML = n1;
+                }
+                //verfica se a calculadora está ligada
+                if (ligada[0] != 1) {
+                    alert("Precisa ligar a calculadora");
+                    $('h2').empty();
+                    lista.splice(0, 2);
+                }
+
+            });
+        });
+        $('#n2').click(function () {
+            n2 = document.getElementById('n2').value;
+            n2 = +(n2);
+            document.getElementById('ler').innerHTML += n2;
+            lista.push(n2);
+            //quando chamar o número vai eliminar o zero
+            if (lista != "") {
+                document.getElementById('ler').innerHTML = n2;
+            }
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+                lista.splice(0, 2);
+            }
+        });
+        $('#n3').click(function () {
+            n3 = document.getElementById('n3').value;
+            n3 = +(n3);
+            document.getElementById('ler').innerHTML += n3;
+            lista.push(n3);
+            //quando chamar o número vai eliminar o zero
+            if (lista != "") {
+                document.getElementById('ler').innerHTML = n3;
+            }
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+                lista.splice(0, 2);
+            }
+        });
+        $('#n4').click(function () {
+            n4 = document.getElementById('n4').value;
+            n4 = +(n4);
+            document.getElementById('ler').innerHTML += n4;
+            lista.push(n4);
+            //quando chamar o número vai eliminar o zero
+            if (lista != "") {
+                document.getElementById('ler').innerHTML = n4;
+            }
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+                lista.splice(0, 2);
+            }
+        });
+        $('#n5').click(function () {
+            n5 = document.getElementById('n5').value;
+            n5 = +(n5);
+            document.getElementById('ler').innerHTML += n5;
+            lista.push(n5);
+            //quando chamar o número vai eliminar o zero
+            if (lista != "") {
+                document.getElementById('ler').innerHTML = n5;
+            }
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+                lista.splice(0, 2);
+            }
+        });
+        $('#n6').click(function () {
+            n6 = document.getElementById('n6').value;
+            n6 = +(n6);
+            document.getElementById('ler').innerHTML += n6;
+            lista.push(n6);
+            //quando chamar o número vai eliminar o zero
+            if (lista != "") {
+                document.getElementById('ler').innerHTML = n6;
+            }
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+                lista.splice(0, 2);
+            }
+        });
+        $('#n7').click(function () {
+            n7 = document.getElementById('n7').value;
+            n7 = +(n7);
+            document.getElementById('ler').innerHTML += n7;
+            lista.push(n7);
+            //quando chamar o número vai eliminar o zero
+            if (lista != "") {
+                document.getElementById('ler').innerHTML = n7;
+            }
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+                lista.splice(0, 2);
+            }
+        });
+        $('#n8').click(function () {
+            n8 = document.getElementById('n8').value;
+            n8 = +(n8);
+            document.getElementById('ler').innerHTML += n8;
+            lista.push(n8);
+            //quando chamar o número vai eliminar o zero
+            if (lista != "") {
+                document.getElementById('ler').innerHTML = n8;
+            }
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+                lista.splice(0, 2);
+            }
+        });
+        $('#n9').click(function () {
+            n9 = document.getElementById('n9').value;
+            n9 = +(n9);
+            lista.push(n9);
+            document.getElementById('ler').innerHTML += n9;
+
+            //quando chamar o número vai eliminar o zero
+            if (lista != "") {
+                document.getElementById('ler').innerHTML = n9;
+            }
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+                lista.splice(0, 2);
+            }
+        });
+        $('#n0').click(function () {
+            n0 = document.getElementById('n0').value;
+            n0 = +(n0);
+            lista.push(n0);
+            document.getElementById('ler').innerHTML += n0;
+            document.getElementById("ler").value = "";
+
+            //quando chamar o número vai eliminar o zero
+            // if (lista != "") {
+            //     document.getElementById('ler').innerHTML = n0;
+            // }
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+                lista.splice(0, 2);
+            }
+
+        });
+        $('#ponto').click(function () {
+            // resultado = r.join();
+            // ponto = resultado.replace(",","");
+
+            ponto = document.getElementById('ponto').value;
+
+            document.getElementById('ler').innerHTML += ponto;
+            //quando chamar o número vai eliminar o zero
+            if (lista != "") {
+                document.getElementById('ler').innerHTML = ponto;
+            }
+
+        });
+        $('#limpar').click(function () {
+            document.getElementById("ler").innerHTML = "0";
+            lista.splice(0, 10);
+            document.getElementById("ler2").innerHTML = "";
+            lista.splice(0, 10);
+
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+
+            }
+
+        });
+
+        $("#plus").click(function () {
+            var soma = 0;
+            //faz a soma
+            for (i = 0; i < lista.length; i++) {
+                soma += lista[i];
+                document.getElementById('ler').innerHTML = soma;
+
+            }
+            //pode deixar para sair resultado aqui
+            document.getElementById("ler2").innerHTML = "";
+            for (i = 0; i < lista.length; i++) {
+
+                document.getElementById("ler2").innerHTML += lista[i] + "+";
+            }
+               
+            lista.splice(0, 10);
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+            }
+
+        });
+        $("#times").click(function () {
+            var multiplicacao = 1;
+            for (i = 0; i < lista.length; i++) {
+                multiplicacao *= lista[i];
+                document.getElementById('ler').innerHTML = multiplicacao;
+            }
+            //pode deixar esse para sair resultado
+            document.getElementById("ler2").innerHTML = "";
+            for (i = 0; i < lista.length; i++) {
+                document.getElementById("ler2").innerHTML += lista[i] + "*";
+            }
+            lista.splice(0, 10);
+
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+            }
+
+        });
+        $("#dividir").click(function () {
+
+            resultado = lista[0] / lista[1];
+
+            document.getElementById('ler').innerHTML = resultado;
+            //pode deixar essa linha para sair resultado
+            document.getElementById("ler2").innerHTML = "";
+            for (i = 0; i < lista.length; i++) {
+                document.getElementById("ler2").innerHTML += lista[i] + "/";
+            }
+
+            lista.splice(0, 10);
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+                $('#ler2').empty();
+            }
+
+
+        });
+        $("#diminui").click(function () {
+
+            resultado = lista[0] - lista[1];
+
+            document.getElementById("ler").innerHTML = resultado;
+            //pode deixar essa linha para sair resultado
+            document.getElementById("ler2").innerHTML = "";
+
+            for (i = 0; i < lista.length; i++) {
+                document.getElementById("ler2").innerHTML += lista[i] + "-";
+            }
+
+            lista.splice(0, 10);
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+            }
+            
+        });
+        $("#resto").click(function () {
+            
+            var resultado = lista[0] % lista[1];
+            document.getElementById('ler').innerHTML = resultado.toFixed(2);
+            for (i = 0; i < lista.length; i++) {
+                document.getElementById("ler2").innerHTML += lista[i] + "%";
+            }
+                lista.splice(0, 10);
+
+            //verfica se a calculadora está ligada
+            if (ligada[0] != 1) {
+                alert("Precisa ligar a calculadora");
+                $('h2').empty();
+            }
+
+        });
+        $("#desligar").click(function () {
+
+            $('h2').empty();
+            ligada.splice(0, 1);
+        });
+        $("#ligar").click(function () {
+            valor = $('#ligar').val();
+            valor = +(valor);
+
+            ligada.push(valor);
+
+            $('#ler').text('0').show();
+            $('#ler2').text('').show();
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
